@@ -1,6 +1,7 @@
 /// @desc
-if (instance_exists(target))
+if (path == false)
 {
-	path = Path_To_Closest(target, except);
-	show_debug_message(path[|0]);
+	show_debug_message("Path started");
+	Path_To([240,272],["wall"]);
+	path = true;
 }

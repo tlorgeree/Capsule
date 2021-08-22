@@ -1,4 +1,4 @@
 /// @desc
-path = [];
+path = false;
 target = obj_Target;
-except = ["wall"]
+except = ["wall"];
