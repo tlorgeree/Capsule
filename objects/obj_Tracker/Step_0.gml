@@ -2,6 +2,9 @@
 if (path == false)
 {
 	show_debug_message("Path started");
-	Path_To([240,272],["wall"]);
+	path_coords = Path_To([432,400],["wall"], 0);
 	path = true;
+	show_debug_message("Returned path coords: " + string(path_coords));
 }
+
+

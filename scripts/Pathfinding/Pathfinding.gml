@@ -6,7 +6,11 @@
 ///@param avoid
 //avoid is an array of attributes that the objects along the way will be checked for.
 //if in arr avoid[], this function will path around those objects.
-function Path_To(_target, _avoid){
+///@param mode
+// 0: first path, fastest
+// 1: if more than 1 path back, choose one at random
+function Path_To(_target, _avoid, _mode){
+	if ((array_length(_target) == 0) || (_mode > 1)) return show_debug_message("Path_To function parameters error")
 	//from current coordinates, round to nearest “tile coordinate”
 	var _x_adjust = x/TILE_SIZE //tile size = 16px*16px, for example
 	var _y_adjust = y/TILE_SIZE
@@ -68,12 +72,19 @@ function Path_To(_target, _avoid){
 				}
 				
 				
-
+				show_debug_message("Check0: " + string(instance_place(path_curr[i][0] + TILE_SIZE,
+					path_curr[i][1], obj_Wall)));
+					show_debug_message("Check1: " + string(instance_place(path_curr[i][0] - TILE_SIZE,
+						path_curr[i][1], obj_Wall)));
+					show_debug_message("Check2: " + string(instance_place(path_curr[i][0],
+						path_curr[i][1] + TILE_SIZE, obj_Wall)));
+					show_debug_message("Check3: " + string(instance_place(path_curr[i][0],
+						path_curr[i][1] - TILE_SIZE, obj_Wall)));
 				obst = false;
 				if !(check[0] == -1)
 					{
-					check[0] = instance_place(path_curr[i][0] + TILE_SIZE,
-					path_curr[i][1], obj_Wall);
+						check[0] = instance_place(path_curr[i][0] + TILE_SIZE,
+						path_curr[i][1], obj_Wall);
 					}
 			
 				if !(check[1] == -1)
@@ -99,6 +110,7 @@ function Path_To(_target, _avoid){
 				{
 					if (!(check[c] == -1))//if not nothing or if not visited
 					{
+						obst = false;//this one line of code can break the whole thing!
 						if !(check[c] == -4)
 						{
 							for(var j = 0; j < array_length(check[c].attributes); j++)
@@ -116,35 +128,36 @@ function Path_To(_target, _avoid){
 								if (obst == true) break; //don't check remaining attributes after 1st found
 							}
 						}
-
+						show_debug_message("Code is running1");
 						if (obst == false)
 						{
-							
+							show_debug_message("Code is running2");
 							switch (c)
 							{
 								case 0: if !(Coords_In_Array(path_next, [path_curr[i][0] + TILE_SIZE, path_curr[i][1]]))
-								{
-									path_next[array_length(path_next)] = [path_curr[i][0] + TILE_SIZE, path_curr[i][1], step];
-								}
-								break;
+									{
+										path_next[array_length(path_next)] = [path_curr[i][0] + TILE_SIZE, path_curr[i][1], step];
+									}
+									break;
 										
 								case 1: if !(Coords_In_Array(path_next, [path_curr[i][0] - TILE_SIZE, path_curr[i][1]]))
-								{
-									path_next[array_length(path_next)] = [path_curr[i][0] - TILE_SIZE, path_curr[i][1],step];
-								}
-										break;
+									{
+										path_next[array_length(path_next)] = [path_curr[i][0] - TILE_SIZE, path_curr[i][1],step];
+									}
+									break;
+								
 								
 								case 2: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] + TILE_SIZE]))
-								{
-									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] + TILE_SIZE,step];
-								}
-										break;
+									{
+										path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] + TILE_SIZE,step];
+									}
+									break;
 								
 								case 3: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] - TILE_SIZE]))
-								{
-									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] - TILE_SIZE,step];
-								}
-										break;
+									{
+										path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] - TILE_SIZE,step];
+									}
+									break;
 							}
 							
 
@@ -155,6 +168,7 @@ function Path_To(_target, _avoid){
 				
 
 			}
+			
 			if !(found == 1)
 			{
 				for (var p = 0; p < array_length(path_curr); p++) //update history
@@ -167,14 +181,43 @@ function Path_To(_target, _avoid){
 				path_curr = path_next;
 				path_next = [];
 				step++;
-				
+				if (array_length(path_curr)==0) return show_debug_message("Target is inaccessible");
 			}
-			show_debug_message("Moving onto step " + string(step));
 			
 	
 	}
 	show_debug_message("Done");
 	
+	//Part 2, return the shortest path as array of length (step - 1)
+	var path_output = [];
+	var step_back = visited[array_length(visited)-1][2];
+	var step_max = step_back;
+	var v_max = array_length(visited);
+	//walk backwards from target to player using step markers.
+	if (_mode == 0)
+	{
+		for (var v = v_max - 1; v < v_max; v--)
+		{
+			//filling arrays backwards after initialization is 100x faster apparently
+			if (step_back == visited[v][2]) 
+			{
+				path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
+				step_back--;
+				if (step_back == 0) break;
+			}
+		}
+		
+		return path_output;
+		
+	}
+	if (_mode == 1)
+	{return show_message("Path_To mode param 1 incomplete, use 0");
+		var candidates = [];//store all potential pathing candidates, choose 1 at random if no priorites
+		for (var v = 0; v < v_max; v++)
+		{
+			if (step == visited[v][2]) candidates[array_length(candidates)] = [visited[v][0],visited[v][1]];
+		}
+	}
 	
 	
 }
