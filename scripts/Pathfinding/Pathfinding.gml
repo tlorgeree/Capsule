@@ -122,16 +122,28 @@ function Path_To(_target, _avoid){
 							
 							switch (c)
 							{
-								case 0: path_next[array_length(path_next)] = [path_curr[i][0] + TILE_SIZE, path_curr[i][1],step];
-										break;
+								case 0: if !(Coords_In_Array(path_next, [path_curr[i][0] + TILE_SIZE, path_curr[i][1]]))
+								{
+									path_next[array_length(path_next)] = [path_curr[i][0] + TILE_SIZE, path_curr[i][1], step];
+								}
+								break;
 										
-								case 1: path_next[array_length(path_next)] = [path_curr[i][0] - TILE_SIZE, path_curr[i][1],step];
+								case 1: if !(Coords_In_Array(path_next, [path_curr[i][0] - TILE_SIZE, path_curr[i][1]]))
+								{
+									path_next[array_length(path_next)] = [path_curr[i][0] - TILE_SIZE, path_curr[i][1],step];
+								}
 										break;
 								
-								case 2: path_next[array_length(visited)] = [path_curr[i][0], path_curr[i][1] + TILE_SIZE,step];
+								case 2: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] + TILE_SIZE]))
+								{
+									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] + TILE_SIZE,step];
+								}
 										break;
 								
-								case 3: path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1]  - TILE_SIZE,step];
+								case 3: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] - TILE_SIZE]))
+								{
+									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] - TILE_SIZE,step];
+								}
 										break;
 							}
 							
