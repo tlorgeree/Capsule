@@ -43,16 +43,13 @@ function Path_To(_target, _avoid, _mode){
 				check = [0,0,0,0]; //-1 means don't check
 				
 				//is next branch target?
-								show_debug_message("Path curr is :" + string(path_curr));
-								show_debug_message(string(i));
 				if ((path_curr[i][0] + TILE_SIZE == _target[0]) && (path_curr[i][1] == _target[1]))
 				|| ((path_curr[i][0] - TILE_SIZE == _target[0]) && (path_curr[i][1] == _target[1]))
 				|| ((path_curr[i][0] == _target[0]) && (path_curr[i][1] + TILE_SIZE == _target[1]))
 				|| ((path_curr[i][0] == _target[0]) && (path_curr[i][1] - TILE_SIZE == _target[1]))
 					{
 						found = 1;//if target is found, break. Doesn't path on target's location.
-						show_debug_message("Found it!");
-						break;
+						
 					}
 				
 				//check if next branch is in history
@@ -72,14 +69,6 @@ function Path_To(_target, _avoid, _mode){
 				}
 				
 				
-				show_debug_message("Check0: " + string(instance_place(path_curr[i][0] + TILE_SIZE,
-					path_curr[i][1], obj_Wall)));
-					show_debug_message("Check1: " + string(instance_place(path_curr[i][0] - TILE_SIZE,
-						path_curr[i][1], obj_Wall)));
-					show_debug_message("Check2: " + string(instance_place(path_curr[i][0],
-						path_curr[i][1] + TILE_SIZE, obj_Wall)));
-					show_debug_message("Check3: " + string(instance_place(path_curr[i][0],
-						path_curr[i][1] - TILE_SIZE, obj_Wall)));
 				obst = false;
 				if !(check[0] == -1)
 					{
@@ -105,7 +94,6 @@ function Path_To(_target, _avoid, _mode){
 						path_curr[i][1] - TILE_SIZE, obj_Wall);
 					}
 		
-				//show_debug_message(string(check));
 				for (var c=0;c<4;c++)
 				{
 					if (!(check[c] == -1))//if not nothing or if not visited
@@ -119,7 +107,6 @@ function Path_To(_target, _avoid, _mode){
 								{
 									if(check[c].attributes[j] ==_avoid[k])
 									{
-										show_debug_message("Found obstacle");
 										obst = true; //don't check remaining avoid traits after 1st found
 											break;
 									}
@@ -128,10 +115,8 @@ function Path_To(_target, _avoid, _mode){
 								if (obst == true) break; //don't check remaining attributes after 1st found
 							}
 						}
-						show_debug_message("Code is running1");
 						if (obst == false)
 						{
-							show_debug_message("Code is running2");
 							switch (c)
 							{
 								case 0: if !(Coords_In_Array(path_next, [path_curr[i][0] + TILE_SIZE, path_curr[i][1]]))
@@ -169,45 +154,53 @@ function Path_To(_target, _avoid, _mode){
 
 			}
 			
-			if !(found == 1)
-			{
+
 				for (var p = 0; p < array_length(path_curr); p++) //update history
 				{
 					
 					visited[array_length(visited)] = path_curr[p];
-				}show_debug_message("Visited: " + string(visited));
-				
-				show_debug_message("Path next is: " + string(path_next));
+				}
 				path_curr = path_next;
 				path_next = [];
 				step++;
-				if (array_length(path_curr)==0) return show_debug_message("Target is inaccessible");
-			}
+				if (array_length(path_curr)==0) return;
+
 			
 	
 	}
-	show_debug_message("Done");
 	
 	//Part 2, return the shortest path as array of length (step - 1)
 	var path_output = [];
 	var step_back = visited[array_length(visited)-1][2];
 	var step_max = step_back;
+	var prev_x, prev_y;
 	var v_max = array_length(visited);
 	//walk backwards from target to player using step markers.
 	if (_mode == 0)
 	{
-		for (var v = v_max - 1; v < v_max; v--)
+		for (var v = v_max - 1; v >= 0; v--)
 		{
 			//filling arrays backwards after initialization is 100x faster apparently
 			if (step_back == visited[v][2]) 
 			{
-				path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
-				step_back--;
-				if (step_back == 0) break;
+				if (step_back != step_max) && (Is_Adjacent([visited[v][0],visited[v][1]],[prev_x, prev_y]))
+				{
+					path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
+					prev_x = visited[v][0];
+					prev_y = visited[v][1];
+					step_back--;
+					if (step_back == 0) break;
+				}
+				if (step_back == step_max)
+				{
+					path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
+					prev_x = visited[v][0];
+					prev_y = visited[v][1];
+					step_back--;
+				}
 			}
 		}
-		
-		return path_output;
+		return path_output; 
 		
 	}
 	if (_mode == 1)

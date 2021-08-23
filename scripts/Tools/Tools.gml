@@ -26,3 +26,21 @@ function Coords_In_Array(array, item){
 	}
 	return _in_array
 }
+
+function Is_Adjacent(coords1, coords2)
+{
+	var x1 = coords1[0];
+	var x2 = coords2[0];
+	var y1 = coords1[1];
+	var y2 = coords2[1];
+	
+	var output = false;
+	if (((x1 + TILE_SIZE == x2) && (y1 == y2)))
+	|| (((x1 - TILE_SIZE == x2) && (y1 == y2)))
+	|| (((x1 == x2) && (y1 + TILE_SIZE == y2)))
+	|| (((x1 == x2) && (y1 - TILE_SIZE == y2)))
+	{
+		output = true;
+	}
+	return output;
+}
