@@ -43,13 +43,11 @@ function Path_To(_target, _avoid, _mode){
 				check = [0,0,0,0]; //-1 means don't check
 				
 				//is next branch target?
-				if ((path_curr[i][0] + TILE_SIZE == _target[0]) && (path_curr[i][1] == _target[1]))
-				|| ((path_curr[i][0] - TILE_SIZE == _target[0]) && (path_curr[i][1] == _target[1]))
-				|| ((path_curr[i][0] == _target[0]) && (path_curr[i][1] + TILE_SIZE == _target[1]))
-				|| ((path_curr[i][0] == _target[0]) && (path_curr[i][1] - TILE_SIZE == _target[1]))
+				if Is_Adjacent([_target[0],_target[1]],[path_curr[i][0],path_curr[i][1]])
 					{
+						show_debug_message("Found true at: " + string([path_curr[i][0],path_curr[i][1],step]));
 						found = 1;//if target is found, break. Doesn't path on target's location.
-						
+						show_debug_message("Found it.");
 					}
 				
 				//check if next branch is in history
@@ -160,6 +158,7 @@ function Path_To(_target, _avoid, _mode){
 					
 					visited[array_length(visited)] = path_curr[p];
 				}
+				show_debug_message("Visited: " + string(visited));
 				path_curr = path_next;
 				path_next = [];
 				step++;
@@ -173,7 +172,8 @@ function Path_To(_target, _avoid, _mode){
 	var path_output = [];
 	var step_back = visited[array_length(visited)-1][2];
 	var step_max = step_back;
-	var prev_x, prev_y;
+	var prev_x = _target[0];
+	var prev_y = _target[1];
 	var v_max = array_length(visited);
 	//walk backwards from target to player using step markers.
 	if (_mode == 0)
@@ -183,7 +183,7 @@ function Path_To(_target, _avoid, _mode){
 			//filling arrays backwards after initialization is 100x faster apparently
 			if (step_back == visited[v][2]) 
 			{
-				if (step_back != step_max) && (Is_Adjacent([visited[v][0],visited[v][1]],[prev_x, prev_y]))
+				if Is_Adjacent([visited[v][0],visited[v][1]],[prev_x, prev_y])
 				{
 					path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
 					prev_x = visited[v][0];
@@ -191,13 +191,7 @@ function Path_To(_target, _avoid, _mode){
 					step_back--;
 					if (step_back == 0) break;
 				}
-				if (step_back == step_max)
-				{
-					path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
-					prev_x = visited[v][0];
-					prev_y = visited[v][1];
-					step_back--;
-				}
+				
 			}
 		}
 		return path_output; 
