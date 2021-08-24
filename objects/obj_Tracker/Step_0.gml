@@ -9,9 +9,14 @@ if ((path == false) && (engaged == true))
 
 if (engaged)
 {
-	Move_to_Path();
-				
-	
+	if !(position_meeting(path[path_step][0],path[path_step][1], all))
+	{
+		Move_to_Path();
+	}
+	else
+	{
+		Mine_Path();
+	}
 	
 	
 }

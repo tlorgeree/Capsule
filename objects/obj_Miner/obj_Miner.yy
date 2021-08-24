@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_Tracker",
-    "path": "sprites/spr_Tracker/spr_Tracker.yy",
+    "name": "spr_Miner",
+    "path": "sprites/spr_Miner/spr_Miner.yy",
   },
   "solid": false,
   "visible": true,
