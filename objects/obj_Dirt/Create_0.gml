@@ -1,4 +1,4 @@
 /// @desc
-integrety_max = 10;
-integrety = integrety_max;
+integrity_max = 10;
+integrity = integrity_max;
 tier = 1;

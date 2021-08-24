@@ -7,4 +7,4 @@ engaged = true;
 target = obj_Target;
 except = ["wall"];
 
-
+image_speed = 0;
