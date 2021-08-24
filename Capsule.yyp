@@ -7,6 +7,7 @@
     {"id":{"name":"Player_Scripts","path":"scripts/Player_Scripts/Player_Scripts.yy",},"order":0,},
     {"id":{"name":"spr_Target","path":"sprites/spr_Target/spr_Target.yy",},"order":3,},
     {"id":{"name":"spr_Engineer","path":"sprites/spr_Engineer/spr_Engineer.yy",},"order":1,},
+    {"id":{"name":"spr_Miner","path":"sprites/spr_Miner/spr_Miner.yy",},"order":6,},
     {"id":{"name":"Tools","path":"scripts/Tools/Tools.yy",},"order":3,},
     {"id":{"name":"MACROS","path":"scripts/MACROS/MACROS.yy",},"order":2,},
     {"id":{"name":"obj_Target","path":"objects/obj_Target/obj_Target.yy",},"order":2,},

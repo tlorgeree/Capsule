@@ -45,9 +45,7 @@ function Path_To(_target, _avoid, _mode){
 				//is next branch target?
 				if Is_Adjacent([_target[0],_target[1]],[path_curr[i][0],path_curr[i][1]])
 					{
-						show_debug_message("Found true at: " + string([path_curr[i][0],path_curr[i][1],step]));
 						found = 1;//if target is found, break. Doesn't path on target's location.
-						show_debug_message("Found it.");
 					}
 				
 				//check if next branch is in history
@@ -158,7 +156,6 @@ function Path_To(_target, _avoid, _mode){
 					
 					visited[array_length(visited)] = path_curr[p];
 				}
-				show_debug_message("Visited: " + string(visited));
 				path_curr = path_next;
 				path_next = [];
 				step++;
