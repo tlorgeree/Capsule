@@ -24,17 +24,24 @@ function Move_to_Path(){
 	
 	
 function Mine_to_Path(){
-	show_debug_message(string(path_step));
-	show_debug_message(string(mining));
+	if (initial_check == 1)
+	{
+		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt))
+		{ 
+			mining = true;
+			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt);
+		}
+		initial_check = 0;
+	}
+	
 	if ((path_coords[path_step][0] == x) && (path_coords[path_step][1] == y))
 	&& !(mining) && (path_step< array_length(path_coords))
 	{
-		mine_target = -1;
+		
 		path_step++;
 		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt))
 		{ 
 			mining = true;
-			
 			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt);
 		}
 	}
@@ -46,14 +53,14 @@ function Mine_to_Path(){
 		if (path_coords[path_step][1] < y) image_index = 1;
 		with (mine_target)
 		{
-			if (other.mine_timer != 0) && (other.mine_timer % 30 == 0)
+			if (other.mine_timer == 0) || (other.mine_timer % 30 == 0)
 			{
 				integrity -= other.mine_spd;
 				if (integrity<=0)
 				{
 					other.mining = false;
 					instance_destroy();
-					other.mine_timer = 0;
+					other.mine_timer = -1;
 					other.mine_target = -1;
 				}
 				
@@ -83,6 +90,7 @@ function Mine_to_Path(){
 			path = false;
 			path_coords = [];
 			path_step = 0;
+			other.initial_check = 1;
 		}
 	}
 }
