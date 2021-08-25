@@ -7,7 +7,10 @@
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_Parent_Bot",
+    "path": "objects/obj_Parent_Bot/obj_Parent_Bot.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -27,8 +30,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Bots",
+    "path": "folders/Objects/Bots.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_Tracker",
