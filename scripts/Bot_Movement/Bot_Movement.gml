@@ -26,10 +26,10 @@ function Move_to_Path(){
 function Mine_to_Path(){
 	if (initial_check == 1)
 	{
-		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt))
+		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block))
 		{ 
 			mining = true;
-			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt);
+			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block);
 		}
 		initial_check = 0;
 	}
@@ -39,10 +39,10 @@ function Mine_to_Path(){
 	{
 		
 		path_step++;
-		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt))
+		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block))
 		{ 
 			mining = true;
-			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Dirt);
+			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block);
 		}
 	}
 	if (mining)
@@ -86,11 +86,20 @@ function Mine_to_Path(){
 		if !(mining)
 		{
 			show_debug_message("This happens");
-			engaged = false;
 			path = false;
-			path_coords = [];
 			path_step = 0;
 			other.initial_check = 1;
+			if ((array_length(target)-1) > target_step) target_step++;
+			else 
+			{
+				engaged = false;
+				path_coords = [];
+			}
 		}
 	}
+}
+
+function Target_Block(object)
+{
+	
 }
