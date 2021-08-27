@@ -85,13 +85,14 @@ function Mine_to_Path(){
 	{
 		if !(mining)
 		{
-			show_debug_message("This happens");
 			path = false;
 			path_step = 0;
 			other.initial_check = 1;
 			if ((array_length(target)-1) > target_step) target_step++;
 			else 
 			{
+				target_step = -1;
+				targetting = -1;
 				engaged = false;
 				path_coords = [];
 			}

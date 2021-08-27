@@ -45,7 +45,8 @@ function Path_To(_target, _avoid, _mode){
 				//is next branch target?
 				if Is_Adjacent([_target[0],_target[1]],[path_curr[i][0],path_curr[i][1]])
 					{
-						found = 1;//if target is found, break. Doesn't path on target's location.
+						found = 1;//if target is found, break. Add as final coordinate
+						break;
 					}
 				
 				//check if next branch is in history
@@ -191,6 +192,7 @@ function Path_To(_target, _avoid, _mode){
 				
 			}
 		}
+		path_output[array_length(path_output)] = [_target[0], _target[1]];
 		return path_output; 
 		
 	}
