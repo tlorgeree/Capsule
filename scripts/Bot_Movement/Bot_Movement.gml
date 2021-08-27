@@ -87,8 +87,8 @@ function Mine_to_Path(){
 		{
 			path = false;
 			path_step = 0;
-			other.initial_check = 1;
-			if ((array_length(target)-1) > target_step) target_step++;
+			initial_check = 1;
+			if (target_step < (array_length(target) -1)) target_step++;
 			else 
 			{
 				target_step = -1;

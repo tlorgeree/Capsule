@@ -46,7 +46,6 @@ function Path_To(_target, _avoid, _mode){
 				if Is_Adjacent([_target[0],_target[1]],[path_curr[i][0],path_curr[i][1]])
 					{
 						found = 1;//if target is found, break. Add as final coordinate
-						break;
 					}
 				
 				//check if next branch is in history
@@ -165,7 +164,6 @@ function Path_To(_target, _avoid, _mode){
 			
 	
 	}
-	
 	//Part 2, return the shortest path as array of length (step - 1)
 	var path_output = [];
 	var step_back = visited[array_length(visited)-1][2];
