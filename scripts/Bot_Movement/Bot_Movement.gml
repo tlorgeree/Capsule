@@ -88,14 +88,7 @@ function Mine_to_Path(){
 			path = false;
 			path_step = 0;
 			initial_check = 1;
-			if (target_step < (array_length(target) -1)) target_step++;
-			else 
-			{
-				target_step = -1;
-				targetting = -1;
-				engaged = false;
-				path_coords = [];
-			}
+			
 		}
 	}
 }

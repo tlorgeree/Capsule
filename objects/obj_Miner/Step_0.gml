@@ -1,25 +1,34 @@
 /// @desc
 if ((path == false) && (engaged == true))
 {
-	if (targetting != -1)
+	if (home == -1) home = [x,y];
+	if (position == -1) position = image_index;
+	path_coords = Path_To_First(targetting, ["wall"]);
+	if (path_coords == -4)
 	{
-		if (array_length(target) == 0)
+		if ((x == home[0]) &&(y == home[1])) 
 		{
-			if (position = -1) position = image_index;
-			target_step = 0;
-			target = Multi_Target_To(targetting);
+			image_index = position;
+			position = -1;
+			engaged = false;
+			targetting = -1;
+			path_coords = [];
+			path = false;
+			home = -1;
 		}
-	}
-	path_coords = Path_To([target[target_step][0],target[target_step][1]],["wall"], 0);
-	if (path_coords == -4) 
-	{
-		show_debug_message("No valid path was found");
-		engaged = false;
-		targetting = -1;
-		target = [];
-		target_step = -1;
-		path_coords = [];
-		path = false;
+		else
+		{
+			path_coords = Path_To(home,["wall"], 0)
+			if (path_coords == -4)
+			{
+				engaged = false;
+				targetting = -1;
+				path_coords = [];
+				path = false;
+				home = -1;
+			}
+		}
+		
 	}
 	if (array_length(path_coords) != 0) path = true;
 
@@ -29,6 +38,6 @@ if ((path == false) && (engaged == true))
 if (engaged)
 {
 	Mine_to_Path();
-	if (target_step == -1) image_index = position;
+
 	
 }
