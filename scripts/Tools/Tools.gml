@@ -44,3 +44,18 @@ function Is_Adjacent(coords1, coords2)
 	}
 	return output;
 }
+
+function Smallest_in_Array(_array)
+{
+	var smallest = 0;
+	var index = 0;
+	for (var item = 0; item < array_length(_array); item++)
+	{
+		if (_array[item] < smallest) 
+		{
+			smallest = _array[item];
+			index = item;
+		}
+	}
+	return index;
+}

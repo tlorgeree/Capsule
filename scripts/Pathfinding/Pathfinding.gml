@@ -118,12 +118,18 @@ while (found == 0)
 							case 0: if !(Coords_In_Array(path_next, [path_curr[i][0] + TILE_SIZE, path_curr[i][1]]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0] + TILE_SIZE, path_curr[i][1], step];
+									if (instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1],all)) {
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1],all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 										
 							case 1: if !(Coords_In_Array(path_next, [path_curr[i][0] - TILE_SIZE, path_curr[i][1]]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0] - TILE_SIZE, path_curr[i][1],step];
+									if (instance_place(path_curr[i][0] - TILE_SIZE, path_curr[i][1],all)){
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0] - TILE_SIZE, path_curr[i][1],all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 								
@@ -131,12 +137,18 @@ while (found == 0)
 							case 2: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] + TILE_SIZE]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] + TILE_SIZE,step];
+									if (instance_place(path_curr[i][0], path_curr[i][1] + TILE_SIZE,all)){
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0], path_curr[i][1] + TILE_SIZE,all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 								
 							case 3: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] - TILE_SIZE]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] - TILE_SIZE,step];
+									if (instance_place(path_curr[i][0], path_curr[i][1] - TILE_SIZE,all)){
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0], path_curr[i][1] - TILE_SIZE,all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 						}
@@ -149,7 +161,7 @@ while (found == 0)
 				
 
 		}
-			
+
 
 			for (var p = 0; p < array_length(path_curr); p++) //update history
 			{
@@ -163,7 +175,7 @@ while (found == 0)
 
 			
 	
-}
+}show_debug_message(string(visited));
 //Part 2, return the shortest path as array of length (step - 1)
 var path_output = [];
 var step_back = visited[array_length(visited)-1][2];
@@ -363,21 +375,6 @@ return visited[array_length(visited)-1][2];
 	
 }
 
-function Multi_Target_To(_targetting)
-{
-var find = instance_number(_targetting);
-		var _curr_target;
-		var _target;
-		for (var f = 0; f < find; f++)
-		{
-			_curr_target = instance_find(_targetting, f);
-			_target[f][0] = _curr_target.x;
-			_target[f][1] = _curr_target.y;
-		}
-		_target[array_length(_target)] = [x, y];
-		return _target;
-}
-
 function Path_To_First(_object, _avoid){
 
 //from current coordinates, round to nearest “tile coordinate”
@@ -389,7 +386,7 @@ else var _x_start = TILE_SIZE * ceil(_x_adjust);
 
 if (floor(abs(_y_adjust) < 0.5)) var _y_start = TILE_SIZE * floor(_y_adjust);
 else var _y_start = TILE_SIZE * ceil(_y_adjust);
-var path_next = []; //placeholder for scoping next path steps. Iterattively becomes path last
+var path_next = []; //placeholder for scoping next path steps. Iterattively becomes ath last
 var step = 1;
 var path_curr = [[_x_start, _y_start, step]];//each index is recorded as [x, y, step]
 
@@ -696,14 +693,18 @@ while (found == 0)
 							case 0: if !(Coords_In_Array(path_next, [path_curr[i][0] + TILE_SIZE, path_curr[i][1]]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0] + TILE_SIZE, path_curr[i][1], step];
-									if (instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1],all)) path_next[array_length(path_next)][3] = instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1],all).integrity;
+									if (instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1],all)) {
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1],all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 										
 							case 1: if !(Coords_In_Array(path_next, [path_curr[i][0] - TILE_SIZE, path_curr[i][1]]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0] - TILE_SIZE, path_curr[i][1],step];
-									if (instance_place(path_curr[i][0] - TILE_SIZE, path_curr[i][1],all)) path_next[array_length(path_next)][3] = instance_place(path_curr[i][0] - TILE_SIZE, path_curr[i][1],all).integrity;
+									if (instance_place(path_curr[i][0] - TILE_SIZE, path_curr[i][1],all)){
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0] - TILE_SIZE, path_curr[i][1],all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 								
@@ -711,14 +712,18 @@ while (found == 0)
 							case 2: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] + TILE_SIZE]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] + TILE_SIZE,step];
-									if (instance_place(path_curr[i][0], path_curr[i][1] + TILE_SIZE,all)) path_next[array_length(path_next)][3] = instance_place(path_curr[i][0], path_curr[i][1] + TILE_SIZE,all).integrity;
+									if (instance_place(path_curr[i][0], path_curr[i][1] + TILE_SIZE,all)){
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0], path_curr[i][1] + TILE_SIZE,all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 								
 							case 3: if !(Coords_In_Array(path_next, [path_curr[i][0], path_curr[i][1] - TILE_SIZE]))
 								{
 									path_next[array_length(path_next)] = [path_curr[i][0], path_curr[i][1] - TILE_SIZE,step];
-									if (instance_place(path_curr[i][0], path_curr[i][1] - TILE_SIZE,all)) path_next[array_length(path_next)][3] = instance_place(path_curr[i][0], path_curr[i][1] - TILE_SIZE,all).integrity;
+									if (instance_place(path_curr[i][0], path_curr[i][1] - TILE_SIZE,all)){
+										path_next[array_length(path_next)-1][3] = instance_place(path_curr[i][0], path_curr[i][1] - TILE_SIZE,all).integrity;
+									}else path_next[array_length(path_next)-1][3] = 0;
 								}
 								break;
 						}
@@ -743,9 +748,8 @@ while (found == 0)
 			step++;
 			if (array_length(path_curr)==0) return -4;
 
-			
-	
 }
+
 //Part 2, return the shortest path as array of length (step - 1)
 var path_output = [];
 var step_back = visited[array_length(visited)-1][2];
@@ -754,27 +758,64 @@ var prev_x = _target[0];
 var prev_y = _target[1];
 var v_max = array_length(visited);
 //walk backwards from target to player using step markers.
-var branch = 0;
-var possible_path = [];
+var branches = [];
+var possible_path = [[]];
+var first = true;
 
 for (var v = v_max - 1; v >= 0; v--)
 {
-	//filling arrays backwards after initialization is 100x faster apparently
-	if (step_back == visited[v][2]) 
-	{
-		if Is_Adjacent([visited[v][0],visited[v][1]],[prev_x, prev_y])
+	for (var path = 0; path < array_length(possible_path); path++)
+	{//show_debug_message(string(possible_path));
+		if !(step_back==step_max)
 		{
-			path_output[(step_max -1) - (step_max - step_back)] = [visited[v][0],visited[v][1]];
-			prev_x = visited[v][0];
-			prev_y = visited[v][1];
-			step_back--;
-			if (step_back == 0) break;
+			prev_x = possible_path[path][array_length(possible_path[path])-1][0];
+			prev_y = possible_path[path][array_length(possible_path[path])-1][1];
+		} 
+		if (step_back == visited[v][2]) 
+		{
+			show_debug_message("This happens1");
+			if Is_Adjacent([visited[v][0],visited[v][1]],[prev_x, prev_y])
+			{
+				branches[array_length(branches)] = [visited[v][0],visited[v][1],visited[v][3]];
+				show_debug_message(string(branches));
+			}
 		}
-				
+		if ((v-1) == -1) break;
+		if (step_back-1 == visited[v-1][2]) 
+		{
+			show_debug_message("This happens2");
+			for (var branch = 0; branch < array_length(branches); branch++)
+			{
+				possible_path[array_length(possible_path)] = possible_path[path];
+				possible_path[array_length(possible_path)-1][array_length(possible_path[array_length(possible_path)-1])] = branches[branch];
+				step_back--;
+				if (step_back == 0) break;
+			}
+		}
 	}
 }
-path_output[array_length(path_output)] = [_target[0], _target[1]];
-return path_output; 
+var count = [];
+var sum;
+for (var choice = 0; choice < array_length(possible_path); choice++)
+{
+	sum = 0;
+	for (var total = 0; total < array_length(possible_path[choice]);total++)
+	{
+		sum += possible_path[choice][total][2];
+	}
+	count[choice] = sum;
+}
+
+path_output = possible_path[Smallest_in_Array(count)];
+
+var path_output_rev = [];
+for (var thing = array_length(path_output)-1; thing >= 0; thing--)
+{
+	path_output_rev[thing] = path_output[((array_length(path_output)-1) - thing)]
+}
+
+path_output_rev[array_length(path_output)] = [_target[0], _target[1]];
+return path_output_rev; 
 
 
 	
