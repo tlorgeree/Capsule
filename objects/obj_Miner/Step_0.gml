@@ -18,7 +18,7 @@ if ((path == false) && (engaged == true))
 		}
 		else
 		{
-			path_coords = Path_To_Weighted(home,["wall"], 0)
+			path_coords = Path_To_Weighted(home,["wall"])
 			if (path_coords == -4)
 			{
 				engaged = false;

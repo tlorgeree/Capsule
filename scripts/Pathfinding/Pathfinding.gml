@@ -9,8 +9,8 @@
 ///@param mode
 // 0: first path, fastest
 // 1: if more than 1 path back, choose one at random
-function Path_To(_target, _avoid, _mode){
-if ((array_length(_target) == 0) || (_mode > 1)) return show_debug_message("Path_To function parameters error")
+function Path_To(_target, _avoid){
+if (array_length(_target) == 0) return show_debug_message("Path_To function parameters error")
 //from current coordinates, round to nearest “tile coordinate”
 var _x_adjust = x/TILE_SIZE //tile size = 16px*16px, for example
 var _y_adjust = y/TILE_SIZE
@@ -175,7 +175,7 @@ while (found == 0)
 
 			
 	
-}show_debug_message(string(visited));
+}
 //Part 2, return the shortest path as array of length (step - 1)
 var path_output = [];
 var step_back = visited[array_length(visited)-1][2];
@@ -584,7 +584,7 @@ return path_output;
 	
 }
 	
-function Path_To_Weighted(_target, _avoid, _mode){
+function Path_To_Weighted(_target, _avoid){
 if (array_length(_target) == 0) return show_debug_message("Path_To_Weighted function parameters error")
 //from current coordinates, round to nearest “tile coordinate”
 var _x_adjust = x/TILE_SIZE //tile size = 16px*16px, for example
@@ -760,12 +760,11 @@ var v_max = array_length(visited);
 //walk backwards from target to player using step markers.
 var branches = [];
 var possible_path = [[]];
-var first = true;
 
 for (var v = v_max - 1; v >= 0; v--)
 {
 	for (var path = 0; path < array_length(possible_path); path++)
-	{//show_debug_message(string(possible_path));
+	{
 		if !(step_back==step_max)
 		{
 			prev_x = possible_path[path][array_length(possible_path[path])-1][0];
@@ -773,27 +772,27 @@ for (var v = v_max - 1; v >= 0; v--)
 		} 
 		if (step_back == visited[v][2]) 
 		{
-			show_debug_message("This happens1");
 			if Is_Adjacent([visited[v][0],visited[v][1]],[prev_x, prev_y])
 			{
 				branches[array_length(branches)] = [visited[v][0],visited[v][1],visited[v][3]];
-				show_debug_message(string(branches));
 			}
 		}
 		if ((v-1) == -1) break;
 		if (step_back-1 == visited[v-1][2]) 
 		{
-			show_debug_message("This happens2");
 			for (var branch = 0; branch < array_length(branches); branch++)
 			{
 				possible_path[array_length(possible_path)] = possible_path[path];
 				possible_path[array_length(possible_path)-1][array_length(possible_path[array_length(possible_path)-1])] = branches[branch];
 				step_back--;
+				branches = [];
+				branch = 0;
 				if (step_back == 0) break;
 			}
 		}
 	}
 }
+show_debug_message("Possible paths are: " + string(possible_path));
 var count = [];
 var sum;
 for (var choice = 0; choice < array_length(possible_path); choice++)
@@ -805,7 +804,7 @@ for (var choice = 0; choice < array_length(possible_path); choice++)
 	}
 	count[choice] = sum;
 }
-
+show_debug_message("Choice array is: " + string(choice));
 path_output = possible_path[Smallest_in_Array(count)];
 
 var path_output_rev = [];
@@ -815,6 +814,7 @@ for (var thing = array_length(path_output)-1; thing >= 0; thing--)
 }
 
 path_output_rev[array_length(path_output)] = [_target[0], _target[1]];
+show_debug_message("Chosen path is: " + string(path_output_rev));
 return path_output_rev; 
 
 
