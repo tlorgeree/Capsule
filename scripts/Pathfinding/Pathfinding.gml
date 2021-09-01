@@ -781,7 +781,6 @@ for (var v = v_max - 1; v >= 0; v--)
 		}
 	}
 }
-show_debug_message("Possible paths are: " + string(possible_path));
 var count = [];
 var sum;
 for (var choice = 0; choice < array_length(possible_path); choice++)
@@ -793,7 +792,6 @@ for (var choice = 0; choice < array_length(possible_path); choice++)
 	}
 	count[choice] = sum;
 }
-show_debug_message("Choice array is: " + string(choice));
 path_output = possible_path[Smallest_in_Array(count)];
 
 var path_output_rev = [];
@@ -803,7 +801,6 @@ for (var thing = array_length(path_output)-1; thing >= 0; thing--)
 }
 
 path_output_rev[array_length(path_output)] = [_target[0], _target[1]];
-show_debug_message("Chosen path is: " + string(path_output_rev));
 return path_output_rev; 
 
 
@@ -811,9 +808,8 @@ return path_output_rev;
 	
 }
 	
-function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found)
+function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found, _target)
 {
-	var _target = [];
 	//from current coordinates, round to nearest “tile coordinate”
 	var _x_adjust = x/TILE_SIZE //tile size = 16px*16px, for example
 	var _y_adjust = y/TILE_SIZE
@@ -844,7 +840,7 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found)
 			{
 				//reset history checks
 				check = [0,0,0,0]; //-1 means don't check
-				show_debug_message("Path_Curr is: " + string(path_curr));
+
 				//is next branch target?
 			if (instance_place(path_curr[i][0] + TILE_SIZE, path_curr[i][1], _object))
 			{
@@ -870,7 +866,6 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found)
 				_target[0] = path_curr[i][0];
 				_target[1] = path_curr[i][1] - TILE_SIZE;
 			}
-				show_debug_message("Found: " + string(found));
 				//check if next branch is in history
 				
 				
@@ -991,11 +986,12 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found)
 					
 					visited[array_length(visited)] = path_curr[p];
 				}
+				if (array_length(path_next) == 0) return -4;
 				path_curr = path_next;
 				path_next = [];
 				step++;
-				if (array_length(path_curr)==0) return -4;
-				return [path_curr, step, visited, found];
+				
+				return [path_curr, step, visited, found, _target];
 				
 			
 	
@@ -1027,6 +1023,7 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found)
 	}
 	path_output[array_length(path_output)] = [_target[0], _target[1]];
 	calculating = false;
+	path = true;
 	return path_output; 
 	
 	

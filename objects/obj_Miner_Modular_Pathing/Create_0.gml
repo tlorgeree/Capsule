@@ -1,6 +1,6 @@
 /// @desc
 path = false;
-path_coords = [[],1,[],0];
+path_coords = [[],1,[],0,[]];
 path_step = 0;
 spd = 8;
 engaged = true;
@@ -18,6 +18,7 @@ image_speed = 0;
 tier = 1;
 position = -1;
 home = -1;
+homebound = false;
 
 //Paths per second
 pps = FPS;
