@@ -986,7 +986,12 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found,
 					
 					visited[array_length(visited)] = path_curr[p];
 				}
-				if (array_length(path_next) == 0) return -4;
+				if (array_length(path_next) == 0) {
+						show_debug_message("This happens");
+						calculating = false;
+						return -4;
+						
+				}
 				path_curr = path_next;
 				path_next = [];
 				step++;

@@ -2,11 +2,11 @@
 path = false;
 path_coords = [[],1,[],0,[]];
 path_step = 0;
-spd = 8;
+spd = 4;
 engaged = true;
 targetting = obj_Iron_Ore;
 except = ["wall"];
-mine_spd = 100;//integrity per 1/2 second
+mine_spd = 2;//integrity per 1/2 second
 
 integrity = 0;
 attributes = ["bot"];

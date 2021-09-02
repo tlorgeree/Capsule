@@ -4,14 +4,14 @@ if ((path == false) && (engaged == true))
 	if (home == -1) home = [x,y];
 	if (position == -1) position = image_index;
 	if !(calculating) calculating = true;
-	if (calculating) && (!homebound)
+	show_debug_message("Homebound: " + string(homebound));
+	if (calculating)
 	{
 		path_coords = Modular_Path_To_First(targetting, ["wall"], 
 		path_coords[0], path_coords[1], path_coords[2],path_coords[3],path_coords[4]);
 	}
 	if (!calculating)
 	{
-
 		if (path_coords == -4)
 		{
 			homebound = true;
