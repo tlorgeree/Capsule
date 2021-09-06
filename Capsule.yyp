@@ -17,6 +17,7 @@
     {"id":{"name":"obj_Target","path":"objects/obj_Target/obj_Target.yy",},"order":2,},
     {"id":{"name":"spr_Capsule_Wall","path":"sprites/spr_Capsule_Wall/spr_Capsule_Wall.yy",},"order":0,},
     {"id":{"name":"Bot_Movement","path":"scripts/Bot_Movement/Bot_Movement.yy",},"order":4,},
+    {"id":{"name":"obj_Game","path":"objects/obj_Game/obj_Game.yy",},"order":10,},
     {"id":{"name":"spr_Tracker","path":"sprites/spr_Tracker/spr_Tracker.yy",},"order":1,},
     {"id":{"name":"obj_Miner","path":"objects/obj_Miner/obj_Miner.yy",},"order":1,},
     {"id":{"name":"spr_Dirt_Block","path":"sprites/spr_Dirt_Block/spr_Dirt_Block.yy",},"order":5,},

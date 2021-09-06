@@ -51,6 +51,12 @@ function Mine_to_Path(){
 		if (path_coords[path_step][0] < x) image_index = 2;
 		if (path_coords[path_step][1] > y) image_index = 3;
 		if (path_coords[path_step][1] < y) image_index = 1;
+		if (!instance_exists(mine_target))
+		{
+			mining = false;
+			mine_timer = -1;
+			mine_target = -1;
+		}
 		with (mine_target)
 		{
 			if (other.mine_timer == 0) || (other.mine_timer % 30 == 0)
