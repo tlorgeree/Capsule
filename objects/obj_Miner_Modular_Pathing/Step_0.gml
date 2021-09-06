@@ -4,7 +4,6 @@ if ((path == false) && (engaged == true))
 	if (home == -1) home = [x,y];
 	if (position == -1) position = image_index;
 	if !(calculating) calculating = true;
-	show_debug_message("Homebound: " + string(homebound));
 	if (calculating)
 	{
 		path_coords = Modular_Path_To_First(targetting, ["wall"], 
