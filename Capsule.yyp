@@ -11,6 +11,7 @@
     {"id":{"name":"spr_Engineer","path":"sprites/spr_Engineer/spr_Engineer.yy",},"order":0,},
     {"id":{"name":"obj_Miner_Modular_Pathing","path":"objects/obj_Miner_Modular_Pathing/obj_Miner_Modular_Pathing.yy",},"order":3,},
     {"id":{"name":"spr_Miner","path":"sprites/spr_Miner/spr_Miner.yy",},"order":0,},
+    {"id":{"name":"Bugs","path":"notes/Bugs/Bugs.yy",},"order":1,},
     {"id":{"name":"Tasks","path":"notes/Tasks/Tasks.yy",},"order":0,},
     {"id":{"name":"Tools","path":"scripts/Tools/Tools.yy",},"order":3,},
     {"id":{"name":"obj_Iron_Ore","path":"objects/obj_Iron_Ore/obj_Iron_Ore.yy",},"order":2,},
@@ -69,7 +70,6 @@
     {"folderPath":"folders/Objects/Game_Managers.yy","order":11,"resourceVersion":"1.0","name":"Game_Managers","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/Blocks/Block_Sprite_Sheets.yy","order":4,"resourceVersion":"1.0","name":"Block_Sprite_Sheets","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/Player_Sprites.yy","order":0,"resourceVersion":"1.0","name":"Player_Sprites","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Notes/To-Do's.yy","order":1,"resourceVersion":"1.0","name":"To-Do's","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

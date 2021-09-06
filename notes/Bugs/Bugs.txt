@@ -1,0 +1,6 @@
+//Known bugs
+
+
+//Fixed bugs
+-Miners stop working when another object destroys their
+	currently targetted block.

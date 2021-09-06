@@ -4,7 +4,7 @@
     "path": "folders/Notes.yy",
   },
   "resourceVersion": "1.1",
-  "name": "Tasks",
+  "name": "Bugs",
   "tags": [],
   "resourceType": "GMNotes",
 }
