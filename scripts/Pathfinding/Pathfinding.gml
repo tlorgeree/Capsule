@@ -101,7 +101,7 @@ while (found == 0)
 						{
 							for(var k = 0; k < a_max; k++)
 							{
-								if(check[c].attributes[j] ==_avoid[k])
+								if ((check[c].attributes[j] ==_avoid[k]) || (check[c].tier > id.tier))
 								{
 									obst = true; //don't check remaining avoid traits after 1st found
 										break;
@@ -919,7 +919,7 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found,
 							{
 								for(var k = 0; k < a_max; k++)
 								{
-									if(check[c].attributes[j] ==_avoid[k])
+									if ((check[c].attributes[j] ==_avoid[k]) || (check[c].tier > id.tier))
 									{
 										obst = true; //don't check remaining avoid traits after 1st found
 											break;

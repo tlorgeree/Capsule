@@ -11,6 +11,7 @@
     {"id":{"name":"spr_Engineer","path":"sprites/spr_Engineer/spr_Engineer.yy",},"order":0,},
     {"id":{"name":"spr_Copper_Ore_Block_Sheet","path":"sprites/spr_Copper_Ore_Block_Sheet/spr_Copper_Ore_Block_Sheet.yy",},"order":1,},
     {"id":{"name":"obj_Miner_Modular_Pathing","path":"objects/obj_Miner_Modular_Pathing/obj_Miner_Modular_Pathing.yy",},"order":3,},
+    {"id":{"name":"obj_Stone","path":"objects/obj_Stone/obj_Stone.yy",},"order":4,},
     {"id":{"name":"spr_Miner","path":"sprites/spr_Miner/spr_Miner.yy",},"order":0,},
     {"id":{"name":"Bugs","path":"notes/Bugs/Bugs.yy",},"order":1,},
     {"id":{"name":"Tasks","path":"notes/Tasks/Tasks.yy",},"order":0,},
