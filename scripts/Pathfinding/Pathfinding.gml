@@ -300,7 +300,7 @@ while (found == 0)
 						{
 							for(var k = 0; k < a_max; k++)
 							{
-								if(check[c].attributes[j] ==_avoid[k])
+								if ((check[c].attributes[j] ==_avoid[k]) || (check[c].tier > id.tier))
 								{
 									obst = true; //don't check remaining avoid traits after 1st found
 										break;
@@ -477,7 +477,7 @@ while (found == 0)
 						{
 							for(var k = 0; k < a_max; k++)
 							{
-								if(check[c].attributes[j] ==_avoid[k])
+								if ((check[c].attributes[j] ==_avoid[k]) || (check[c].tier > id.tier))
 								{
 									obst = true; //don't check remaining avoid traits after 1st found
 										break;
@@ -633,25 +633,25 @@ while (found == 0)
 			if !(check[0] == -1)
 				{
 					check[0] = instance_place(path_curr[i][0] + TILE_SIZE,
-					path_curr[i][1], obj_Wall);
+					path_curr[i][1], all);
 				}
 			
 			if !(check[1] == -1)
 				{
 					check[1] = instance_place(path_curr[i][0] - TILE_SIZE,
-					path_curr[i][1], obj_Wall);
+					path_curr[i][1], all);
 				}
 			
 			if !(check[2] == -1)
 				{
 					check[2] = instance_place(path_curr[i][0],
-					path_curr[i][1] + TILE_SIZE, obj_Wall);
+					path_curr[i][1] + TILE_SIZE, all);
 				}
 				
 			if !(check[3] == -1)
 				{
 					check[3] = instance_place(path_curr[i][0],
-					path_curr[i][1] - TILE_SIZE, obj_Wall);
+					path_curr[i][1] - TILE_SIZE, all);
 				}
 		
 			for (var c=0;c<4;c++)
@@ -665,7 +665,7 @@ while (found == 0)
 						{
 							for(var k = 0; k < a_max; k++)
 							{
-								if(check[c].attributes[j] ==_avoid[k])
+								if ((check[c].attributes[j] ==_avoid[k]) || (check[c].tier > id.tier))
 								{
 									obst = true; //don't check remaining avoid traits after 1st found
 										break;

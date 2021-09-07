@@ -1,12 +1,5 @@
 // To-Do
 
-- Create block sprite function that auto-adjusts sprite to match
-	surounding blocks. Should only apply once a block is placed, 
-	and trigger a change variable in surrounding blocks.
-	
-- Remove the wall object from the game and for now keep the stone
-	as the unminable object (make it tier 2).
-	
 - Begin development of capsule and blocks.
 
 - Begin development of Engineer functions:
@@ -18,3 +11,12 @@
 	iteration. Save as global information?
 	
 // To-Done
+- Create block sprite function that auto-adjusts sprite to match
+	surounding blocks. Should only apply once a block is placed, 
+	and trigger a change variable in surrounding blocks.
+	
+- Remove the wall object from the game and for now keep the stone
+	as the unminable object (make it tier 2).
+
+// Misc
+- making block image speed >0 simulates an earthquake effect
