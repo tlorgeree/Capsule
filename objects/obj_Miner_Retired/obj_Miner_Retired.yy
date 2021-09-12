@@ -31,10 +31,10 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Bots",
-    "path": "folders/Objects/Bots.yy",
+    "path": "folders/Objects/Old_Models/Bots.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_Miner_Modular_Pathing",
+  "name": "obj_Miner_Retired",
   "tags": [],
   "resourceType": "GMObject",
 }
