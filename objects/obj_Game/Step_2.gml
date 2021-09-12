@@ -18,13 +18,6 @@ if (keyboard_check_pressed(vk_escape))
 		global.screen_shot = -1;
 	}
 }
-/*else
-{
-	if(sprite_exists(global.screen_shot))
-	{
-        sprite_delete(global.screen_shot);
-    }
-}*/
 
 
 

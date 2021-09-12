@@ -6,9 +6,10 @@ if ((path == false) && (engaged == true))
 	if !(calculating) calculating = true;
 	if (calculating)
 	{
-		path_coords = Modular_Path_To_First(targetting, ["wall"], 
+		path_coords = Modular_Path_To_First(targetting, except, 
 		path_coords[0], path_coords[1], path_coords[2],path_coords[3],path_coords[4]);
 	}
+
 	if (!calculating)
 	{
 		if (path_coords == -4)
@@ -23,10 +24,11 @@ if ((path == false) && (engaged == true))
 				path_coords = [[],1,[],0,[]];
 				path = false;
 				home = -1;
+				show_debug_message("This executed for some reason");
 			}
 			else
 			{
-				path_coords = Path_To_Weighted(home,["wall"])
+				path_coords = Path_To(home, except);
 				if (path_coords == -4)
 				{
 					engaged = false;
@@ -35,6 +37,7 @@ if ((path == false) && (engaged == true))
 					path = false;
 					home = -1;
 				}
+				
 			}
 		
 		}

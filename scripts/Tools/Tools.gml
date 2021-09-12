@@ -59,3 +59,9 @@ function Smallest_in_Array(_array)
 	}
 	return index;
 }
+
+function At_Coords(_arr1, _arr2)
+{
+	if ((_arr1[0] == _arr2[0]) && (_arr1[0] == _arr2[0])) return 1;
+	return 0;
+}

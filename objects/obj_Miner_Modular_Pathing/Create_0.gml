@@ -5,8 +5,9 @@ path_step = 0;
 spd = 4;
 engaged = true;
 targetting = obj_Iron_Ore;
+target_id = -1;
 except = ["wall"];
-mine_spd = 5;//integrity per 1/2 second
+mine_spd = 20;//integrity per 1/2 second
 
 integrity = 0;
 attributes = ["bot"];

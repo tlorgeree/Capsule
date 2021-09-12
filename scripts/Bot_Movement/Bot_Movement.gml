@@ -32,17 +32,29 @@ function Mine_to_Path(){
 			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block);
 		}
 		initial_check = 0;
+
 	}
 	
 	if ((path_coords[path_step][0] == x) && (path_coords[path_step][1] == y))
 	&& !(mining) && (path_step< array_length(path_coords))
 	{
-		
-		path_step++;
-		if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block))
-		{ 
-			mining = true;
-			mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block);
+		if !(instance_exists(target_id))
+		{
+			mining = false;
+			mine_timer = -1;
+			mine_target = -1;
+			var _erase = ds_list_find_index(global.Mining_Target, other.target_id);
+			ds_list_delete(global.Mining_Target, _erase);
+			target_id = -1;
+		}
+		else
+		{
+			path_step++;
+			if (path_step< array_length(path_coords)) && (instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block))
+			{ 
+				mining = true;
+				mine_target = instance_place(path_coords[path_step][0],path_coords[path_step][1], obj_Parent_Block);
+			}
 		}
 	}
 	if (mining)
@@ -56,6 +68,10 @@ function Mine_to_Path(){
 			mining = false;
 			mine_timer = -1;
 			mine_target = -1;
+			var _erase = ds_list_find_index(global.Mining_Target, other.target_id);
+			ds_list_delete(global.Mining_Target, _erase);
+			target_id = -1;
+			
 		}
 		with (mine_target)
 		{
@@ -64,10 +80,17 @@ function Mine_to_Path(){
 				integrity -= other.mine_spd;
 				if (integrity<=0)
 				{
+					if (other.mine_target == other.target_id)
+					{
+						var _erase = ds_list_find_index(global.Mining_Target, other.target_id);
+						ds_list_delete(global.Mining_Target, _erase);
+						other.target_id = -1;
+					}
 					other.mining = false;
 					instance_destroy();
 					other.mine_timer = -1;
 					other.mine_target = -1;
+						
 				}
 				
 			}other.mine_timer++
