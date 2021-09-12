@@ -24,7 +24,6 @@ if ((path == false) && (engaged == true)) //There is no current path but we are 
 				path_coords = [[],1,[],0,[]];
 				path = false;
 				home = -1;
-				show_debug_message("This executed for some reason");
 			}
 			else
 			{
