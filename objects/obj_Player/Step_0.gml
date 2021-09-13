@@ -6,7 +6,8 @@ move_left = keyboard_check(ord("A"));
 move_right = keyboard_check(ord("D"));
 
 //Movement functions
-ver_move = (move_down - move_up);
-hor_move = (move_right - move_left);
+ver_move = (move_down - move_up)* spd;
+hor_move = (move_right - move_left) * spd;
 
 Player_Move(ver_move, hor_move);
+Player_Collision(grav, hor_move);
