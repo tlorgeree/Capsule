@@ -18,3 +18,4 @@ image_speed = 0;
 tier = 1;
 position = -1;
 home = -1;
+//random comment
