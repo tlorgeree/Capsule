@@ -21,20 +21,24 @@ if ((path == false) && (engaged == true)) //There is no current path but we are 
 				position = -1;
 				engaged = false;
 				targetting = -1;
-				path_coords = [[],1,[],0,[]];
+				
 				path = false;
 				home = -1;
 			}
 			else
 			{
+				
 				path_coords = Path_To(home, except);
-				if (path_coords == -4)
+				if !(calculating)
 				{
-					engaged = false;
-					targetting = -1;
-					path_coords = [[],1,[],0,[]];
-					path = false;
-					home = -1;
+					if (path_coords == -4)
+					{
+						engaged = false;
+						targetting = -1;
+						path_coords = [[],1,[],0,[]];
+						path = false;
+						home = -1;
+					}
 				}
 				
 			}

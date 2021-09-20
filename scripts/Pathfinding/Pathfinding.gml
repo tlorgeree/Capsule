@@ -1071,68 +1071,41 @@ function Modular_Path_To_First(_object, _avoid, path_curr, step, visited, found,
 	
 }
 
-function Modular_Path_To_Coords(_coords, _avoid, path_curr, step, visited, found, _target)
+function Modular_Path_To_Coords(_target, _avoid, path_curr, step, visited, found)
 {
 	//from current coordinates, round to nearest “tile coordinate”
-	var _x_adjust = x/TILE_SIZE //tile size = 16px*16px, for example
-	var _y_adjust = y/TILE_SIZE
+var _x_adjust = x/TILE_SIZE //tile size = 16px*16px, for example
+var _y_adjust = y/TILE_SIZE
 
-	if (floor(abs(_x_adjust) < 0.5)) var _x_start = TILE_SIZE * floor(_x_adjust);
-	else var _x_start = TILE_SIZE * ceil(_x_adjust);
+if (floor(abs(_x_adjust) < 0.5)) var _x_start = TILE_SIZE * floor(_x_adjust);
+else var _x_start = TILE_SIZE * ceil(_x_adjust);
 
-	if (floor(abs(_y_adjust) < 0.5)) var _y_start = TILE_SIZE * floor(_y_adjust);
-	else var _y_start = TILE_SIZE * ceil(_y_adjust);
-	var path_next = []; //placeholder for scoping next path steps. Iterattively becomes path last
-	if (array_length(path_curr) == 0) 
-	{
-		path_curr = [[_x_start, _y_start, step]];
-		//each index is recorded as [x, y, step]
-	}
-	
-	var _max, obst, check;
-	var a_max = array_length(_avoid);
+if (floor(abs(_y_adjust) < 0.5)) var _y_start = TILE_SIZE * floor(_y_adjust);
+else var _y_start = TILE_SIZE * ceil(_y_adjust);
+var path_next = []; //placeholder for scoping next path steps. Iterattively becomes path last
+var _max, obst, check;
+var a_max = array_length(_avoid);
 	
 	
-	//from starting coords, check surrounding coords for obstacles
-			//store each branching path as array of indices (see Fig 2)
-	while (found == 0)
-	{
-		_max = array_length(path_curr);
+//from starting coords, check surrounding coords for obstacles
+		//store each branching path as array of indices (see Fig 2)
+while (found == 0)
+{
+	_max = array_length(path_curr);
 		
-		for (var i = 0; i < _max; i++)
-			{
-				//reset history checks
-				check = [0,0,0,0]; //-1 means don't check
-				check[0] = At_Coords([path_curr[i][0] + TILE_SIZE, path_curr[i][1]], _coords);
-				check[1] = At_Coords([path_curr[i][0] - TILE_SIZE, path_curr[i][1]], _coords);
-				check[2] = At_Coords([path_curr[i][0], path_curr[i][1] + TILE_SIZE], _coords);
-				check[3] = At_Coords([path_curr[i][0], path_curr[i][1] - TILE_SIZE], _coords);
-				//is next branch target?
-			if ((check[0]) && (found !=1))
-			{
-				found = 1;//if target is found, break. Add as final coordinate
-				_target[0] = path_curr[i][0] + TILE_SIZE;
-				_target[1] = path_curr[i][1];
-			}
-			if((check[1]) && (found !=1))
-			{
-				found = 1;//if target is found, break. Add as final coordinate
-				_target[0] = path_curr[i][0] - TILE_SIZE;
-				_target[1] = path_curr[i][1];
-			}
-			if ((check[2]) && (found !=1))
-			{
-				found = 1;//if target is found, break. Add as final coordinate
-				_target[0] = path_curr[i][0];
-				_target[1] = path_curr[i][1] + TILE_SIZE;
-			}
-			if ((check[3]) && (found !=1))
-			{
-				found = 1;//if target is found, break. Add as final coordinate
-				_target[0] = path_curr[i][0];
-				_target[1] = path_curr[i][1] - TILE_SIZE;
-			}
-				//check if next branch is in history
+	for (var i = 0; i < _max; i++)
+		{
+			//reset history checks
+			check = [0,0,0,0]; //-1 means don't check
+				
+			//is next branch target?
+			if Is_Adjacent([_target[0],_target[1]],[path_curr[i][0],path_curr[i][1]])
+				{
+					show_debug_message("This happened");
+					found = 1;//if target is found, break. Add as final coordinate
+				}
+				
+			//check if next branch is in history
 				
 				for (var h = 0; h < array_length(visited); h++)//additional gate to make sure it hasn't been visited before
 				{
