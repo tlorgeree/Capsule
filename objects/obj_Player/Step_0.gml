@@ -19,4 +19,4 @@ else ver_move = ver_spd;
 
 
 Player_Collision_Move_Check(grav);
-show_debug_message(string(ver_spd));
+show_debug_message(string(grounded));

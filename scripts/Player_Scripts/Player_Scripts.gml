@@ -20,39 +20,29 @@ function Player_Collision_Move_Check(_grav)
 	var h = sprite_get_height(sprite_index);
 	var _collision = false;
 	//Horizontal tiles
-	if (collision_rectangle(x + w + hor_move, y-1, x - w + hor_move, y - h, obj_Parent_Block, true, true))
+	
+	if (place_meeting(x + hor_move, y, obj_Parent_Block))
 	{
-		if (hor_move > 0) 
+		if (hor_move > 0)
 		{
-			var target = collision_rectangle(x + w + hor_move, y-1, x - w, y - h, obj_Parent_Block, true, true);
-			if (target)
+			while (!place_meeting(x+1, y, obj_Parent_Block))
 			{
-				with(target)
-				{
-					//other.x = bbox_left - w - 0.01;
-					
-				}
+				x++;
 			}
-			
 		}
 		if (hor_move < 0)
 		{
-			if (collision_rectangle(x + w, y-1, x - w + hor_move, y - h, obj_Parent_Block, true, true))
+			while (!place_meeting(x-1, y, obj_Parent_Block))
 			{
-				var target = collision_rectangle(x + w, y-1, x - w + hor_move, y - h, obj_Parent_Block, true, true);
-				with(target) 
-				{
-					
-					//other.x = bbox_left 
-					//+ sprite_get_width(target.sprite_index)*image_xscale + w;
-					//show_debug_message(sprite_get_width(tar_spr));
-				}
+				x--;
 			}
 		}
 		hor_move = 0;
 		_collision = true;
-
 	}
+		
+	
+	
 
 	
 	//Horizontal Move Commit
@@ -62,38 +52,46 @@ function Player_Collision_Move_Check(_grav)
 
 
 	//Vertical Collision Check
-
-	if (collision_rectangle(x + w-1, y + ver_move, x - w+1, y -h + ver_move, obj_Parent_Block, true, true))
+	if (place_meeting(x, y + ver_move, obj_Parent_Block))
 	{
-		
-		if collision_line(x + w-1, y + ver_move+4, x - w+1, y+ver_move+1, obj_Parent_Block, true, true)
+		show_debug_message("This is happenning");
+		if (ver_move > 0) && !(grounded)
+		{
+			while (!place_meeting(x, y + 1, obj_Parent_Block))
 			{
-				grounded = true;
-				//with(collision_rectangle(x + w-5, y + ver_move, x - w+5, 
-				//y -h, obj_Parent_Block, true, true)) other.y = y;	
+				y++;
 			}
-		
+			grounded = true;
+		}
+		if (ver_move < 0)
+		{
+			while (!place_meeting(x, y - 1, obj_Parent_Block))
+			{
+				
+				y--;
+			}
+		}
+		ver_move = 0;
 		ver_spd = 0;
 		_collision = true;
-
 	}
-
-
 
 	//Vertical Move Commit
-	if (grounded) ver_spd = 0;
-	else 
-	{
-		y += ver_spd;
-		ver_spd += _grav;
-	}
+	y += ver_move;
 	
 	if (grounded)
 	{
 		
-		if !(collision_rectangle(x + w-4, y, x - w+4, y -(h * 0.5), obj_Parent_Block, true, true))
+		if !(collision_rectangle(x + w - 4, y + 1, x - w + 4, y -(h * 0.5), obj_Parent_Block, true, true))
 		{
 			grounded = false;
+		}
+	}
+	else
+	{
+		if !(ver_allow)
+		{
+			ver_spd += _grav;
 		}
 	}
 

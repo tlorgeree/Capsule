@@ -13,7 +13,7 @@ researched = [];
 #region Interactions
 ver_allow = false;
 ver_spd = 0;
-ver_spd_max = -7;
+ver_spd_max = -5;
 grav = 0.2;
 grounded = false;
 #endregion
