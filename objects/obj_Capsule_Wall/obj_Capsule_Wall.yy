@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_Capsule_Wall",
+    "path": "sprites/spr_Capsule_Wall/spr_Capsule_Wall.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

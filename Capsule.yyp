@@ -13,6 +13,7 @@
     {"id":{"name":"spr_Copper_Ore_Block_Sheet","path":"sprites/spr_Copper_Ore_Block_Sheet/spr_Copper_Ore_Block_Sheet.yy",},"order":1,},
     {"id":{"name":"obj_Miner","path":"objects/obj_Miner/obj_Miner.yy",},"order":3,},
     {"id":{"name":"obj_Stone","path":"objects/obj_Stone/obj_Stone.yy",},"order":4,},
+    {"id":{"name":"rm_Capsule_Test","path":"rooms/rm_Capsule_Test/rm_Capsule_Test.yy",},"order":3,},
     {"id":{"name":"spr_Stone_Block_Sheet","path":"sprites/spr_Stone_Block_Sheet/spr_Stone_Block_Sheet.yy",},"order":3,},
     {"id":{"name":"spr_Miner","path":"sprites/spr_Miner/spr_Miner.yy",},"order":0,},
     {"id":{"name":"spr_Capsule_Wall","path":"sprites/spr_Capsule_Wall/spr_Capsule_Wall.yy",},"order":7,},
@@ -60,6 +61,7 @@
     {"roomId":{"name":"rm_Title","path":"rooms/rm_Title/rm_Title.yy",},},
     {"roomId":{"name":"rm_Miner_Bot_Test","path":"rooms/rm_Miner_Bot_Test/rm_Miner_Bot_Test.yy",},},
     {"roomId":{"name":"rm_Main_Menu","path":"rooms/rm_Main_Menu/rm_Main_Menu.yy",},},
+    {"roomId":{"name":"rm_Capsule_Test","path":"rooms/rm_Capsule_Test/rm_Capsule_Test.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":5,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
@@ -94,7 +96,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2.3.5.589",
+    "IDEVersion": "2.3.4.583",
   },
   "resourceVersion": "1.4",
   "name": "Capsule",
