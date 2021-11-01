@@ -64,9 +64,9 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_Title","path":"rooms/rm_Title/rm_Title.yy",},},
     {"roomId":{"name":"rm_Miner_Bot_Test","path":"rooms/rm_Miner_Bot_Test/rm_Miner_Bot_Test.yy",},},
+    {"roomId":{"name":"rm_Bug_Test","path":"rooms/rm_Bug_Test/rm_Bug_Test.yy",},},
     {"roomId":{"name":"rm_Main_Menu","path":"rooms/rm_Main_Menu/rm_Main_Menu.yy",},},
     {"roomId":{"name":"rm_Capsule_Test","path":"rooms/rm_Capsule_Test/rm_Capsule_Test.yy",},},
-    {"roomId":{"name":"rm_Bug_Test","path":"rooms/rm_Bug_Test/rm_Bug_Test.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":5,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

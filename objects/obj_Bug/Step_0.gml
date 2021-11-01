@@ -7,7 +7,7 @@ if ((path == false) && (engaged == true)) //There is no current path but we are 
 	if !(calculating) calculating = true;
 	if (calculating)
 	{
-		path_coords = Bug_Path_To_Coords();
+		path_coords = Bug_Path_to_Coords();
 	}
 
 	if (!calculating)
