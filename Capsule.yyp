@@ -41,10 +41,10 @@
     {"id":{"name":"spr_Copper_Ore_Block","path":"sprites/spr_Copper_Ore_Block/spr_Copper_Ore_Block.yy",},"order":2,},
     {"id":{"name":"obj_Tracker","path":"objects/obj_Tracker/obj_Tracker.yy",},"order":2,},
     {"id":{"name":"spr_Capsule_Wall_Sheet","path":"sprites/spr_Capsule_Wall_Sheet/spr_Capsule_Wall_Sheet.yy",},"order":4,},
-    {"id":{"name":"obj_Bug","path":"objects/obj_Bug/obj_Bug.yy",},"order":13,},
     {"id":{"name":"obj_Parent_Bot","path":"objects/obj_Parent_Bot/obj_Parent_Bot.yy",},"order":0,},
     {"id":{"name":"spr_Iron_Ore_Block","path":"sprites/spr_Iron_Ore_Block/spr_Iron_Ore_Block.yy",},"order":1,},
     {"id":{"name":"spr_Stone_Block","path":"sprites/spr_Stone_Block/spr_Stone_Block.yy",},"order":0,},
+    {"id":{"name":"obj_Miner_New","path":"objects/obj_Miner_New/obj_Miner_New.yy",},"order":4,},
     {"id":{"name":"rm_Miner_Bot_Test","path":"rooms/rm_Miner_Bot_Test/rm_Miner_Bot_Test.yy",},"order":0,},
   ],
   "Options": [
@@ -56,7 +56,6 @@
   ],
   "isDnDProject": false,
   "isEcma": false,
-  "tutorialPath": "",
   "configs": {
     "name": "Default",
     "children": [],
@@ -101,9 +100,9 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2.3.5.589",
+    "IDEVersion": "2022.2.0.614",
   },
-  "resourceVersion": "1.4",
+  "resourceVersion": "1.5",
   "name": "Capsule",
   "tags": [],
   "resourceType": "GMProject",

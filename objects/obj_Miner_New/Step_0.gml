@@ -1,5 +1,4 @@
 /// @desc
-/// @desc
 if ((path == false) && (engaged == true)) //There is no current path but we are looking
 {
 	if (home == -1) home = [x,y];
@@ -7,8 +6,8 @@ if ((path == false) && (engaged == true)) //There is no current path but we are 
 	if !(calculating) calculating = true;
 	if (calculating)
 	{
-		path_coords = Bug_Move_to_Coords();
-		show_debug_message(string(path_coords));
+		path_coords = Modular_Path_To_First(targetting, except, 
+		path_coords[0], path_coords[1], path_coords[2],path_coords[3],path_coords[4]);
 	}
 
 	if (!calculating)
